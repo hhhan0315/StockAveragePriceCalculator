@@ -26,16 +26,43 @@ class ViewController: UIViewController {
         addPriceField.delegate = self
         addAmountField.delegate = self
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
 }
 
 extension ViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("hi")
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        if let commaRemovedText = textField.text?.components(separatedBy: [","]).joined()  {
+            var combinedText = commaRemovedText + string
+            
+            // backspace 입력받았을 때
+            if string.isEmpty {
+                // 마지막 하나만 남았을 경우
+                if combinedText.count == 1 {
+                    textField.text = .none
+                    return false
+                }
+                
+                let lastIndex = combinedText.index(combinedText.endIndex, offsetBy: -1)
+                combinedText = String(combinedText[..<lastIndex])
+            }
+            
+            guard let formatNumber = numberFormatter.number(from: combinedText) else {
+                return false
+            }
+            let formatString = numberFormatter.string(from: formatNumber)
+            textField.text = formatString
+            return false
+        }
+        
+        return true
     }
 }
-
