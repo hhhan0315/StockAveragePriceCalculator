@@ -24,6 +24,8 @@ class ViewController: UIViewController {
         
         currentPriceField.addTarget(self, action: #selector(currentTotalPriceEdit(_:)), for: .editingChanged)
         currentAmountField.addTarget(self, action: #selector(currentTotalPriceEdit(_:)), for: .editingChanged)
+        addPriceField.addTarget(self, action: #selector(addTotalPriceEdit(_:)), for: .editingChanged)
+        addAmountField.addTarget(self, action: #selector(addTotalPriceEdit(_:)), for: .editingChanged)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -41,18 +43,38 @@ class ViewController: UIViewController {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         
-        guard let currentPrice = currentPriceField.text?.replacingOccurrences(of: ",", with: ""),
-              let currentAmount = currentAmountField.text?.replacingOccurrences(of: ",", with: "") else {
+        guard let commaRemovedPrice = currentPriceField.text?.replacingOccurrences(of: ",", with: ""),
+              let commaRemovedAmount = currentAmountField.text?.replacingOccurrences(of: ",", with: "") else {
             return
         }
         
-        guard let price = Int(currentPrice), let amount = Int(currentAmount) else {
+        guard let price = Int(commaRemovedPrice),
+              let amount = Int(commaRemovedAmount) else {
             currentTotalPriceField.text = .none
             return
         }
         
         let formatString = numberFormatter.string(from: NSNumber(value: price*amount))
         currentTotalPriceField.text = formatString
+    }
+    
+    @objc func addTotalPriceEdit(_ sender: UITextField) {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        guard let commaRemovedPrice = addPriceField.text?.replacingOccurrences(of: ",", with: ""),
+              let commaRemovedAmount = addAmountField.text?.replacingOccurrences(of: ",", with: "") else {
+            return
+        }
+        
+        guard let price = Int(commaRemovedPrice),
+              let amount = Int(commaRemovedAmount) else {
+            addTotalPriceField.text = .none
+            return
+        }
+        
+        let formatString = numberFormatter.string(from: NSNumber(value: price*amount))
+        addTotalPriceField.text = formatString
     }
 }
 
@@ -63,32 +85,32 @@ extension ViewController: UITextFieldDelegate {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         
-        if let commaRemovedText = textField.text?.replacingOccurrences(of: ",", with: "")  {
-            var combinedText = commaRemovedText + string
-            
-            // backspace 입력받았을 때
-            if string.isEmpty {
-                // 마지막 하나만 남았을 경우
-                if combinedText.count == 1 {
-                    textField.text = .none
-                    textField.sendActions(for: .editingChanged)
-                    return false
-                }
-                
-                let lastIndex = combinedText.index(combinedText.endIndex, offsetBy: -1)
-                combinedText = String(combinedText[..<lastIndex])
-            }
-            
-            guard let formatNumber = numberFormatter.number(from: combinedText) else {
+        guard let commaRemovedText = textField.text?.replacingOccurrences(of: ",", with: "") else {
+            return false
+        }
+
+        var combinedText = commaRemovedText + string
+        
+        // backspace 입력받았을 때
+        if string.isEmpty {
+            // 마지막 하나만 남았을 경우
+            if combinedText.count == 1 {
+                textField.text = .none
+                textField.sendActions(for: .editingChanged)
                 return false
             }
             
-            let formatString = numberFormatter.string(from: formatNumber)
-            textField.text = formatString
-            textField.sendActions(for: .editingChanged)
+            let lastIndex = combinedText.index(combinedText.endIndex, offsetBy: -1)
+            combinedText = String(combinedText[..<lastIndex])
+        }
+        
+        guard let formatNumber = numberFormatter.number(from: combinedText) else {
             return false
         }
         
-        return true
+        let formatString = numberFormatter.string(from: formatNumber)
+        textField.text = formatString
+        textField.sendActions(for: .editingChanged)
+        return false
     }
 }
