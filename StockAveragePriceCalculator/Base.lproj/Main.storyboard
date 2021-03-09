@@ -291,8 +291,10 @@
                     <connections>
                         <outlet property="addAmountField" destination="Us3-S9-9H4" id="sjn-3r-kJM"/>
                         <outlet property="addPriceField" destination="wCn-VS-M0g" id="RL3-JH-Bwb"/>
+                        <outlet property="addTotalPriceField" destination="Wrj-f8-M6d" id="3h4-sQ-dcy"/>
                         <outlet property="currentAmountField" destination="g9H-fH-C9x" id="Cgj-cW-H0e"/>
                         <outlet property="currentPriceField" destination="0IO-Rq-fAi" id="n3w-l0-Lkl"/>
+                        <outlet property="currentTotalPriceField" destination="gqK-rU-0mp" id="1ha-Fi-acb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIa-rW-vIN" sceneMemberID="firstResponder"/>

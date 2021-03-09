@@ -14,10 +14,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var addPriceField: UITextField!
     @IBOutlet weak var addAmountField: UITextField!
     
+    @IBOutlet weak var currentTotalPriceField: UITextField!
+    @IBOutlet weak var addTotalPriceField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setDelegate()
+        
+        currentPriceField.addTarget(self, action: #selector(currentTotalPriceEdit(_:)), for: .editingChanged)
+        currentAmountField.addTarget(self, action: #selector(currentTotalPriceEdit(_:)), for: .editingChanged)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func setDelegate() {
@@ -27,10 +37,22 @@ class ViewController: UIViewController {
         addAmountField.delegate = self
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
+    @objc func currentTotalPriceEdit(_ sender: UITextField) {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        
+        guard let currentPrice = currentPriceField.text?.replacingOccurrences(of: ",", with: ""),
+              let currentAmount = currentAmountField.text?.replacingOccurrences(of: ",", with: "") else {
+            return
+        }
+        
+        guard let price = Int(currentPrice), let amount = Int(currentAmount) else {
+            return
+        }
+        
+        let formatString = numberFormatter.string(from: NSNumber(value: price*amount))
+        currentTotalPriceField.text = formatString
     }
-    
 }
 
 extension ViewController: UITextFieldDelegate {
@@ -40,7 +62,7 @@ extension ViewController: UITextFieldDelegate {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         
-        if let commaRemovedText = textField.text?.components(separatedBy: [","]).joined()  {
+        if let commaRemovedText = textField.text?.replacingOccurrences(of: ",", with: "")  {
             var combinedText = commaRemovedText + string
             
             // backspace 입력받았을 때
@@ -48,6 +70,7 @@ extension ViewController: UITextFieldDelegate {
                 // 마지막 하나만 남았을 경우
                 if combinedText.count == 1 {
                     textField.text = .none
+                    textField.sendActions(for: .editingChanged)
                     return false
                 }
                 
@@ -58,8 +81,10 @@ extension ViewController: UITextFieldDelegate {
             guard let formatNumber = numberFormatter.number(from: combinedText) else {
                 return false
             }
+            
             let formatString = numberFormatter.string(from: formatNumber)
             textField.text = formatString
+            textField.sendActions(for: .editingChanged)
             return false
         }
         
