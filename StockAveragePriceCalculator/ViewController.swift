@@ -47,6 +47,7 @@ class ViewController: UIViewController {
         }
         
         guard let price = Int(currentPrice), let amount = Int(currentAmount) else {
+            currentTotalPriceField.text = .none
             return
         }
         
