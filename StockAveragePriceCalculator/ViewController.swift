@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setDelegate()
+        userDefaultsClear()
         
         currentPriceField.addTarget(self, action: #selector(currentPriceEdit(_:)), for: .editingChanged)
         currentAmountField.addTarget(self, action: #selector(currentAmountEdit(_:)), for: .editingChanged)
@@ -47,18 +48,27 @@ class ViewController: UIViewController {
         addAmountField.delegate = self
     }
     
+    func userDefaultsClear() {
+        userDefaults.set(0, forKey: "currentPrice")
+        userDefaults.set(0, forKey: "currentAmount")
+        userDefaults.set(0, forKey: "addPrice")
+        userDefaults.set(0, forKey: "addAmount")
+    }
+    
     @objc func currentPriceEdit(_ sender: UITextField) {
         guard let commaRemovedPrice = currentPriceField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
         guard let currentPrice = Int(commaRemovedPrice) else {
             userDefaults.set(0, forKey: "currentPrice")
             currentTotalPriceField.text = .none
+            checkFinalField()
             return
         }
         
         userDefaults.set(currentPrice, forKey: "currentPrice")
         
         checkCurrentField()
+        checkFinalField()
     }
     
     @objc func currentAmountEdit(_ sender: UITextField) {
@@ -67,12 +77,14 @@ class ViewController: UIViewController {
         guard let currentAmount = Int(commaRemovedAmount) else {
             userDefaults.set(0, forKey: "currentAmount")
             currentTotalPriceField.text = .none
+            checkFinalField()
             return
         }
         
         userDefaults.set(currentAmount, forKey: "currentAmount")
         
         checkCurrentField()
+        checkFinalField()
     }
     
     @objc func addPriceEdit(_ sender: UITextField) {
@@ -81,12 +93,14 @@ class ViewController: UIViewController {
         guard let addPrice = Int(commaRemovedPrice) else {
             userDefaults.set(0, forKey: "addPrice")
             addTotalPriceField.text = .none
+            checkFinalField()
             return
         }
         
         userDefaults.set(addPrice, forKey: "addPrice")
 
         checkAddField()
+        checkFinalField()
     }
     
     @objc func addAmountEdit(_ sender: UITextField) {
@@ -95,12 +109,14 @@ class ViewController: UIViewController {
         guard let addAmount = Int(commaRemovedAmount) else {
             userDefaults.set(0, forKey: "addAmount")
             addTotalPriceField.text = .none
+            checkFinalField()
             return
         }
         
         userDefaults.set(addAmount, forKey: "addAmount")
         
         checkAddField()
+        checkFinalField()
     }
     
     func makeCommaString(num: Int) -> String? {
@@ -133,7 +149,16 @@ class ViewController: UIViewController {
     }
     
     func checkFinalField() {
+        let currentPrice = userDefaults.integer(forKey: "currentPrice")
+        let currentAmount = userDefaults.integer(forKey: "currentAmount")
+        let addPrice = userDefaults.integer(forKey: "addPrice")
+        let addAmount = userDefaults.integer(forKey: "addAmount")
         
+        if currentAmount == 0 || addAmount == 0 {
+            finalAmountField.text = .none
+        } else {
+            finalAmountField.text = makeCommaString(num: currentAmount + addAmount)
+        }
     }
     
 }
