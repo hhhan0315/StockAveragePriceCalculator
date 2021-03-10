@@ -287,6 +287,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" image="gearshape" catalog="system" id="h0e-o8-PfR">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="68D-5U-hgP"/>
                     </navigationItem>
                     <connections>
                         <outlet property="addAmountField" destination="Us3-S9-9H4" id="sjn-3r-kJM"/>
@@ -295,6 +296,9 @@
                         <outlet property="currentAmountField" destination="g9H-fH-C9x" id="Cgj-cW-H0e"/>
                         <outlet property="currentPriceField" destination="0IO-Rq-fAi" id="n3w-l0-Lkl"/>
                         <outlet property="currentTotalPriceField" destination="gqK-rU-0mp" id="1ha-Fi-acb"/>
+                        <outlet property="finalAmountField" destination="Ezq-Dc-E39" id="OOs-KX-IR9"/>
+                        <outlet property="finalPriceField" destination="RMm-VC-duJ" id="aYT-ri-9d7"/>
+                        <outlet property="finalTotalPriceField" destination="TTp-f7-svl" id="0uN-MC-CkA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIa-rW-vIN" sceneMemberID="firstResponder"/>
