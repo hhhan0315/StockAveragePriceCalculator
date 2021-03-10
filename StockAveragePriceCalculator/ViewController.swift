@@ -47,124 +47,93 @@ class ViewController: UIViewController {
         addAmountField.delegate = self
     }
     
-    // 각각 필드마다 다 따로따로 해주면서 userDefaults에 저장해주자.
-    
     @objc func currentPriceEdit(_ sender: UITextField) {
-        
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        
         guard let commaRemovedPrice = currentPriceField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
-        guard let price = Int(commaRemovedPrice) else {
+        guard let currentPrice = Int(commaRemovedPrice) else {
             userDefaults.set(0, forKey: "currentPrice")
             currentTotalPriceField.text = .none
             return
         }
         
-        userDefaults.set(price, forKey: "currentPrice")
+        userDefaults.set(currentPrice, forKey: "currentPrice")
         
-        let currentPrice = userDefaults.integer(forKey: "currentPrice")
-        let currentAmount = userDefaults.integer(forKey: "currentAmount")
-//        let addPrice = userDefaults.integer(forKey: "addPrice")
-//        let addAmount = userDefaults.integer(forKey: "addAmount")
-        
-        if currentAmount == 0 {
-            currentTotalPriceField.text = .none
-        } else {
-            let formatString = numberFormatter.string(from: NSNumber(value: currentPrice*currentAmount))
-            currentTotalPriceField.text = formatString
-        }
-//        finalPriceField.text = String(currentPrice+addPrice)
-//        finalAmountField.text = String(currentAmount+addAmount)
+        checkCurrentField()
     }
     
     @objc func currentAmountEdit(_ sender: UITextField) {
-        
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        
         guard let commaRemovedAmount = currentAmountField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
-        guard let amount = Int(commaRemovedAmount) else {
+        guard let currentAmount = Int(commaRemovedAmount) else {
             userDefaults.set(0, forKey: "currentAmount")
             currentTotalPriceField.text = .none
             return
         }
         
-        userDefaults.set(amount, forKey: "currentAmount")
+        userDefaults.set(currentAmount, forKey: "currentAmount")
         
-        let currentPrice = userDefaults.integer(forKey: "currentPrice")
-        let currentAmount = userDefaults.integer(forKey: "currentAmount")
-//        let addPrice = userDefaults.integer(forKey: "addPrice")
-//        let addAmount = userDefaults.integer(forKey: "addAmount")
-        
-        if currentPrice == 0 {
-            currentTotalPriceField.text = .none
-        } else {
-            let formatString = numberFormatter.string(from: NSNumber(value: currentPrice*currentAmount))
-            currentTotalPriceField.text = formatString
-        }
-        
-//        finalAmountField.text = String(currentAmount+addAmount)
+        checkCurrentField()
     }
     
     @objc func addPriceEdit(_ sender: UITextField) {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        
         guard let commaRemovedPrice = addPriceField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
-        guard let price = Int(commaRemovedPrice) else {
+        guard let addPrice = Int(commaRemovedPrice) else {
             userDefaults.set(0, forKey: "addPrice")
             addTotalPriceField.text = .none
             return
         }
         
-        userDefaults.set(price, forKey: "addPrice")
-        
-        let currentPrice = userDefaults.integer(forKey: "currentPrice")
-        let currentAmount = userDefaults.integer(forKey: "currentAmount")
-        let addPrice = userDefaults.integer(forKey: "addPrice")
-        let addAmount = userDefaults.integer(forKey: "addAmount")
-        
-        if addAmount == 0 {
-            addTotalPriceField.text = .none
-        } else {
-            let formatString = numberFormatter.string(from: NSNumber(value: addPrice * addAmount))
-            addTotalPriceField.text = formatString
-        }
-        
-//        finalAmountField.text = String(currentAmount+addAmount)
+        userDefaults.set(addPrice, forKey: "addPrice")
+
+        checkAddField()
     }
     
     @objc func addAmountEdit(_ sender: UITextField) {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        
         guard let commaRemovedAmount = addAmountField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
-        guard let amount = Int(commaRemovedAmount) else {
+        guard let addAmount = Int(commaRemovedAmount) else {
             userDefaults.set(0, forKey: "addAmount")
             addTotalPriceField.text = .none
             return
         }
         
-        userDefaults.set(amount, forKey: "addAmount")
+        userDefaults.set(addAmount, forKey: "addAmount")
         
+        checkAddField()
+    }
+    
+    func makeCommaString(num: Int) -> String? {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let formatString = numberFormatter.string(from: NSNumber(value: num))
+        return formatString
+    }
+    
+    func checkCurrentField() {
         let currentPrice = userDefaults.integer(forKey: "currentPrice")
         let currentAmount = userDefaults.integer(forKey: "currentAmount")
+        
+        if currentPrice == 0 || currentAmount == 0 {
+            currentTotalPriceField.text = .none
+        } else {
+            currentTotalPriceField.text = makeCommaString(num: currentPrice * currentAmount)
+        }
+    }
+    
+    func checkAddField() {
         let addPrice = userDefaults.integer(forKey: "addPrice")
         let addAmount = userDefaults.integer(forKey: "addAmount")
         
-        if addPrice == 0 {
+        if addPrice == 0 || addAmount == 0 {
             addTotalPriceField.text = .none
         } else {
-            let formatString = numberFormatter.string(from: NSNumber(value: addPrice * addAmount))
-            addTotalPriceField.text = formatString
+            addTotalPriceField.text = makeCommaString(num: addPrice * addAmount)
         }
+    }
+    
+    func checkFinalField() {
         
-//        finalAmountField.text = String(currentAmount+addAmount)
     }
     
 }
