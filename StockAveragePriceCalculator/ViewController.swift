@@ -53,6 +53,8 @@ class ViewController: UIViewController {
         userDefaults.set(0, forKey: "currentAmount")
         userDefaults.set(0, forKey: "addPrice")
         userDefaults.set(0, forKey: "addAmount")
+        userDefaults.set(0, forKey: "currentSum")
+        userDefaults.set(0, forKey: "addSum")
     }
     
     @objc func currentPriceEdit(_ sender: UITextField) {
@@ -133,7 +135,9 @@ class ViewController: UIViewController {
         if currentPrice == 0 || currentAmount == 0 {
             currentTotalPriceField.text = .none
         } else {
-            currentTotalPriceField.text = makeCommaString(num: currentPrice * currentAmount)
+            userDefaults.set(currentPrice * currentAmount, forKey: "currentSum")
+            let currentSum = userDefaults.integer(forKey: "currentSum")
+            currentTotalPriceField.text = makeCommaString(num: currentSum)
         }
     }
     
@@ -144,7 +148,9 @@ class ViewController: UIViewController {
         if addPrice == 0 || addAmount == 0 {
             addTotalPriceField.text = .none
         } else {
-            addTotalPriceField.text = makeCommaString(num: addPrice * addAmount)
+            userDefaults.set(addPrice * addAmount, forKey: "addSum")
+            let addSum = userDefaults.integer(forKey: "addSum")
+            addTotalPriceField.text = makeCommaString(num: addSum)
         }
     }
     
@@ -154,10 +160,16 @@ class ViewController: UIViewController {
         let addPrice = userDefaults.integer(forKey: "addPrice")
         let addAmount = userDefaults.integer(forKey: "addAmount")
         
-        if currentAmount == 0 || addAmount == 0 {
+        if currentPrice == 0 || addPrice == 0 || currentAmount == 0 || addAmount == 0 {
+            finalPriceField.text = .none
             finalAmountField.text = .none
+            finalTotalPriceField.text = .none
         } else {
+            let currentSum = userDefaults.integer(forKey: "currentSum")
+            let addSum = userDefaults.integer(forKey: "addSum")
+            finalTotalPriceField.text = makeCommaString(num: currentSum + addSum)
             finalAmountField.text = makeCommaString(num: currentAmount + addAmount)
+            finalPriceField.text = makeCommaString(num: (currentSum + addSum) / (currentAmount + addAmount))
         }
     }
     
