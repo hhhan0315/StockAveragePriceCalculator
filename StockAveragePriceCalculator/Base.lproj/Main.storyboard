@@ -293,10 +293,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j86-dm-BCX">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="gearshape" catalog="system" id="h0e-o8-PfR">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <barButtonItem key="leftBarButtonItem" image="gearshape" catalog="system" id="h0e-o8-PfR"/>
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="68D-5U-hgP">
+                            <connections>
+                                <action selector="touchResetButton:" destination="dSb-fe-TjG" id="gO6-s1-KDt"/>
+                            </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Reset" id="68D-5U-hgP"/>
                     </navigationItem>
                     <connections>
                         <outlet property="addAmountField" destination="Us3-S9-9H4" id="sjn-3r-kJM"/>

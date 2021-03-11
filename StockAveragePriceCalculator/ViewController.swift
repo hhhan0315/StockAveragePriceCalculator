@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var addAmountField: UITextField!    
     @IBOutlet weak var addTotalPriceField: UITextField!
     
-    let userDefaults = UserDefaults.standard
+    private let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +40,6 @@ class ViewController: UIViewController {
     }
     
     func setDelegate() {
-        //        finalPriceField.delegate = self
-        //        finalAmountField.delegate = self
         currentPriceField.delegate = self
         currentAmountField.delegate = self
         addPriceField.delegate = self
@@ -171,6 +169,20 @@ class ViewController: UIViewController {
             finalAmountField.text = makeCommaString(num: currentAmount + addAmount)
             finalPriceField.text = makeCommaString(num: (currentSum + addSum) / (currentAmount + addAmount))
         }
+    }
+    
+    
+    @IBAction func touchResetButton(_ sender: UIBarButtonItem) {
+        self.userDefaultsClear()
+        finalPriceField.text = .none
+        finalAmountField.text = .none
+        finalTotalPriceField.text = .none
+        currentPriceField.text = .none
+        currentAmountField.text = .none
+        currentTotalPriceField.text = .none
+        addPriceField.text = .none
+        addAmountField.text = .none
+        addTotalPriceField.text = .none
     }
     
 }
