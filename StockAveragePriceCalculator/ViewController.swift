@@ -189,6 +189,7 @@ class ViewController: UIViewController {
             finalAmountField.text = makeCommaString(num: Double(currentAmount + addAmount))
             finalPriceField.text = makeCommaString(num: Double(average))
             finalPercentField.text = makeCommaString(num: percent)
+            // ㅋ
         }
     }
     
