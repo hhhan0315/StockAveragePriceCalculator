@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var currentTotalPriceField: UITextField!
     
     @IBOutlet weak var addPriceField: UITextField!
-    @IBOutlet weak var addAmountField: UITextField!    
+    @IBOutlet weak var addAmountField: UITextField!
     @IBOutlet weak var addTotalPriceField: UITextField!
     
     private let userDefaults = UserDefaults.standard
@@ -26,24 +26,34 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setDelegate()
+        setTextField()
         userDefaultsClear()
         
-        currentPriceField.addTarget(self, action: #selector(currentPriceEdit(_:)), for: .editingChanged)
-        currentAmountField.addTarget(self, action: #selector(currentAmountEdit(_:)), for: .editingChanged)
-        addPriceField.addTarget(self, action: #selector(addPriceEdit(_:)), for: .editingChanged)
-        addAmountField.addTarget(self, action: #selector(addAmountEdit(_:)), for: .editingChanged)
+        currentPriceField.addTarget(self, action: #selector(currentPriceEdit), for: .editingChanged)
+        currentAmountField.addTarget(self, action: #selector(currentAmountEdit), for: .editingChanged)
+        addPriceField.addTarget(self, action: #selector(addPriceEdit), for: .editingChanged)
+        addAmountField.addTarget(self, action: #selector(addAmountEdit), for: .editingChanged)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    func setDelegate() {
+    func setTextField() {
         currentPriceField.delegate = self
         currentAmountField.delegate = self
         addPriceField.delegate = self
         addAmountField.delegate = self
+        
+//        currentPriceField.tag = 1
+//        currentAmountField.tag = 2
+//        addPriceField.tag = 3
+//        addAmountField.tag = 4
+        
+        currentPriceField.addButton()
+        currentAmountField.addButton()
+        addPriceField.addButton()
+        addAmountField.addButton()
     }
     
     func userDefaultsClear() {
@@ -55,7 +65,7 @@ class ViewController: UIViewController {
         userDefaults.set(0, forKey: "addSum")
     }
     
-    @objc func currentPriceEdit(_ sender: UITextField) {
+    @objc func currentPriceEdit() {
         guard let commaRemovedPrice = currentPriceField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
         guard let currentPrice = Int(commaRemovedPrice) else {
@@ -71,7 +81,7 @@ class ViewController: UIViewController {
         checkFinalField()
     }
     
-    @objc func currentAmountEdit(_ sender: UITextField) {
+    @objc func currentAmountEdit() {
         guard let commaRemovedAmount = currentAmountField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
         guard let currentAmount = Int(commaRemovedAmount) else {
@@ -87,7 +97,7 @@ class ViewController: UIViewController {
         checkFinalField()
     }
     
-    @objc func addPriceEdit(_ sender: UITextField) {
+    @objc func addPriceEdit() {
         guard let commaRemovedPrice = addPriceField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
         guard let addPrice = Int(commaRemovedPrice) else {
@@ -103,7 +113,7 @@ class ViewController: UIViewController {
         checkFinalField()
     }
     
-    @objc func addAmountEdit(_ sender: UITextField) {
+    @objc func addAmountEdit() {
         guard let commaRemovedAmount = addAmountField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
         guard let addAmount = Int(commaRemovedAmount) else {
@@ -222,4 +232,47 @@ extension ViewController: UITextFieldDelegate {
         textField.sendActions(for: .editingChanged)
         return false
     }
+}
+
+extension UITextField {
+    
+    func addButton() {
+        let toolbar = UIToolbar()
+        toolbar.barStyle = .default
+        
+        let up = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: nil)
+        let down = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: nil)
+//        let up = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(goToPrevField))
+//        let down = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: #selector(goToNextField))
+        
+        toolbar.items = [up, down]
+        toolbar.sizeToFit()
+        self.inputAccessoryView = toolbar
+    }
+    
+//    @objc func goToPrevField() {
+//        self.resignFirstResponder()
+//        let prevFieldTag = self.tag - 1
+//        print(prevFieldTag)
+//        if let prevField = self.superview?.superview?.viewWithTag(prevFieldTag) as? UITextField  {
+//            prevField.becomeFirstResponder()
+//            print("y")
+//        } else {
+//            self.becomeFirstResponder()
+//            print("n")
+//        }
+//    }
+//
+//    @objc func goToNextField() {
+//        self.resignFirstResponder()
+//        let nextFieldTag = self.tag + 1
+//        print(nextFieldTag)
+//        if let nextField = self.superview?.viewWithTag(nextFieldTag) as? UITextField {
+//            nextField.becomeFirstResponder()
+//            print("y")
+//        } else {
+//            self.becomeFirstResponder()
+//            print("n")
+//        }
+//    }
 }
