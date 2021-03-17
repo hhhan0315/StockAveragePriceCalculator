@@ -12,10 +12,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var finalPriceField: UITextField!
     @IBOutlet weak var finalAmountField: UITextField!
     @IBOutlet weak var finalTotalPriceField: UITextField!
+    @IBOutlet weak var finalPercentField: UITextField!
     
     @IBOutlet weak var currentPriceField: UITextField!
     @IBOutlet weak var currentAmountField: UITextField!
     @IBOutlet weak var currentTotalPriceField: UITextField!
+    @IBOutlet weak var currentPercentField: UITextField!
     
     @IBOutlet weak var addPriceField: UITextField!
     @IBOutlet weak var addAmountField: UITextField!
@@ -50,10 +52,10 @@ class ViewController: UIViewController {
 //        addPriceField.tag = 3
 //        addAmountField.tag = 4
         
-        currentPriceField.addButton()
-        currentAmountField.addButton()
-        addPriceField.addButton()
-        addAmountField.addButton()
+//        currentPriceField.addButton()
+//        currentAmountField.addButton()
+//        addPriceField.addButton()
+//        addAmountField.addButton()
     }
     
     func userDefaultsClear() {
@@ -71,6 +73,7 @@ class ViewController: UIViewController {
         guard let currentPrice = Int(commaRemovedPrice) else {
             userDefaults.set(0, forKey: "currentPrice")
             currentTotalPriceField.text = .none
+            currentPercentField.text = .none
             checkFinalField()
             return
         }
@@ -78,6 +81,7 @@ class ViewController: UIViewController {
         userDefaults.set(currentPrice, forKey: "currentPrice")
         
         checkCurrentField()
+        checkCurrentPercentField()
         checkFinalField()
     }
     
@@ -103,6 +107,7 @@ class ViewController: UIViewController {
         guard let addPrice = Int(commaRemovedPrice) else {
             userDefaults.set(0, forKey: "addPrice")
             addTotalPriceField.text = .none
+            currentPercentField.text = .none
             checkFinalField()
             return
         }
@@ -110,6 +115,7 @@ class ViewController: UIViewController {
         userDefaults.set(addPrice, forKey: "addPrice")
 
         checkAddField()
+        checkCurrentPercentField()
         checkFinalField()
     }
     
@@ -129,9 +135,10 @@ class ViewController: UIViewController {
         checkFinalField()
     }
     
-    func makeCommaString(num: Int) -> String? {
+    func makeCommaString(num: Double) -> String? {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 2
         let formatString = numberFormatter.string(from: NSNumber(value: num))
         return formatString
     }
@@ -145,7 +152,7 @@ class ViewController: UIViewController {
         } else {
             userDefaults.set(currentPrice * currentAmount, forKey: "currentSum")
             let currentSum = userDefaults.integer(forKey: "currentSum")
-            currentTotalPriceField.text = makeCommaString(num: currentSum)
+            currentTotalPriceField.text = makeCommaString(num: Double(currentSum))
         }
     }
     
@@ -158,7 +165,7 @@ class ViewController: UIViewController {
         } else {
             userDefaults.set(addPrice * addAmount, forKey: "addSum")
             let addSum = userDefaults.integer(forKey: "addSum")
-            addTotalPriceField.text = makeCommaString(num: addSum)
+            addTotalPriceField.text = makeCommaString(num: Double(addSum))
         }
     }
     
@@ -172,24 +179,41 @@ class ViewController: UIViewController {
             finalPriceField.text = .none
             finalAmountField.text = .none
             finalTotalPriceField.text = .none
+            finalPercentField.text = .none
         } else {
             let currentSum = userDefaults.integer(forKey: "currentSum")
             let addSum = userDefaults.integer(forKey: "addSum")
-            finalTotalPriceField.text = makeCommaString(num: currentSum + addSum)
-            finalAmountField.text = makeCommaString(num: currentAmount + addAmount)
-            finalPriceField.text = makeCommaString(num: (currentSum + addSum) / (currentAmount + addAmount))
+            let average = (currentSum + addSum) / (currentAmount + addAmount)
+            let percent = ((Double(addPrice) / Double(average)) - 1) * 100
+            finalTotalPriceField.text = makeCommaString(num: Double(currentSum + addSum))
+            finalAmountField.text = makeCommaString(num: Double(currentAmount + addAmount))
+            finalPriceField.text = makeCommaString(num: Double(average))
+            finalPercentField.text = makeCommaString(num: percent)
         }
     }
     
+    func checkCurrentPercentField() {
+        let currentPrice = userDefaults.double(forKey: "currentPrice")
+        let addPrice = userDefaults.double(forKey: "addPrice")
+        
+        if currentPrice == 0 || addPrice == 0 {
+            currentPercentField.text = .none
+        } else {
+            let percent = ((addPrice / currentPrice) - 1) * 100
+            currentPercentField.text = makeCommaString(num: percent)
+        }
+    }
     
     @IBAction func touchResetButton(_ sender: UIBarButtonItem) {
         self.userDefaultsClear()
         finalPriceField.text = .none
         finalAmountField.text = .none
         finalTotalPriceField.text = .none
+        finalPercentField.text = .none
         currentPriceField.text = .none
         currentAmountField.text = .none
         currentTotalPriceField.text = .none
+        currentPercentField.text = .none
         addPriceField.text = .none
         addAmountField.text = .none
         addTotalPriceField.text = .none
