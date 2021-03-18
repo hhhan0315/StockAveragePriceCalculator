@@ -80,7 +80,7 @@ class ViewController: UIViewController {
         
         userDefaults.set(currentPrice, forKey: "currentPrice")
         
-        checkCurrentField()
+        checkCurrentTotalField()
         checkCurrentPercentField()
         checkFinalField()
     }
@@ -97,7 +97,7 @@ class ViewController: UIViewController {
         
         userDefaults.set(currentAmount, forKey: "currentAmount")
         
-        checkCurrentField()
+        checkCurrentTotalField()
         checkFinalField()
     }
     
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
         
         userDefaults.set(addPrice, forKey: "addPrice")
 
-        checkAddField()
+        checkAddTotalField()
         checkCurrentPercentField()
         checkFinalField()
     }
@@ -131,7 +131,7 @@ class ViewController: UIViewController {
         
         userDefaults.set(addAmount, forKey: "addAmount")
         
-        checkAddField()
+        checkAddTotalField()
         checkFinalField()
     }
     
@@ -143,28 +143,28 @@ class ViewController: UIViewController {
         return formatString
     }
     
-    func checkCurrentField() {
+    func checkCurrentTotalField() {
         let currentPrice = userDefaults.integer(forKey: "currentPrice")
         let currentAmount = userDefaults.integer(forKey: "currentAmount")
         
         if currentPrice == 0 || currentAmount == 0 {
             currentTotalPriceField.text = .none
         } else {
-            userDefaults.set(currentPrice * currentAmount, forKey: "currentSum")
-            let currentSum = userDefaults.integer(forKey: "currentSum")
+            let currentSum = currentPrice * currentAmount
+            userDefaults.set(currentSum, forKey: "currentSum")
             currentTotalPriceField.text = makeCommaString(num: Double(currentSum))
         }
     }
     
-    func checkAddField() {
+    func checkAddTotalField() {
         let addPrice = userDefaults.integer(forKey: "addPrice")
         let addAmount = userDefaults.integer(forKey: "addAmount")
         
         if addPrice == 0 || addAmount == 0 {
             addTotalPriceField.text = .none
         } else {
-            userDefaults.set(addPrice * addAmount, forKey: "addSum")
-            let addSum = userDefaults.integer(forKey: "addSum")
+            let addSum = addPrice * addAmount
+            userDefaults.set(addSum, forKey: "addSum")
             addTotalPriceField.text = makeCommaString(num: Double(addSum))
         }
     }
@@ -189,7 +189,6 @@ class ViewController: UIViewController {
             finalAmountField.text = makeCommaString(num: Double(currentAmount + addAmount))
             finalPriceField.text = makeCommaString(num: Double(average))
             finalPercentField.text = makeCommaString(num: percent)
-            // ㅋ
         }
     }
     
