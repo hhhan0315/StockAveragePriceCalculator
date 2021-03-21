@@ -204,7 +204,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func touchResetButton(_ sender: UIBarButtonItem) {
+    @IBAction func touchClearButton(_ sender: UIBarButtonItem) {
         self.userDefaultsClear()
         finalPriceField.text = .none
         finalAmountField.text = .none
@@ -224,6 +224,9 @@ class ViewController: UIViewController {
 extension ViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField.text!.count > 11 {
+            textField.deleteBackward()
+        }
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
@@ -256,6 +259,14 @@ extension ViewController: UITextFieldDelegate {
         textField.sendActions(for: .editingChanged)
         return false
     }
+    
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        textField.backgroundColor = #colorLiteral(red: 0.7800276875, green: 0.77757442, blue: 0.8165202141, alpha: 1)
+//    }
+//    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        textField.backgroundColor = .none
+//    }
 }
 
 extension UITextField {
