@@ -8,6 +8,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var view1: UIView!
+    @IBOutlet weak var view2: UIView!
+    @IBOutlet weak var view3: UIView!
     
     @IBOutlet weak var finalPriceField: UITextField!
     @IBOutlet weak var finalAmountField: UITextField!
@@ -22,6 +25,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var addPriceField: UITextField!
     @IBOutlet weak var addAmountField: UITextField!
     @IBOutlet weak var addTotalPriceField: UITextField!
+    
+    private var inputTextFields = [UITextField]()
+    private var allTextFields = [UITextField]()
     
     private let userDefaults = UserDefaults.standard
     
@@ -42,22 +48,31 @@ class ViewController: UIViewController {
     }
     
     func setTextField() {
-        currentPriceField.delegate = self
-        currentAmountField.delegate = self
-        addPriceField.delegate = self
-        addAmountField.delegate = self
+        inputTextFields = [currentPriceField, currentAmountField, addPriceField, addAmountField]
+        allTextFields = [finalPriceField, finalAmountField, finalTotalPriceField, finalPercentField, currentPriceField, currentAmountField, currentTotalPriceField, currentPercentField, addPriceField, addAmountField, addTotalPriceField]
         
-//        currentPriceField.keyboardType = .
+        for textField in inputTextFields {
+            textField.delegate = self
+            textField.layer.borderWidth = 1
+            textField.layer.borderColor = UIColor.lightGray.cgColor
+            textField.layer.cornerRadius = 5
+        }
         
-//        currentPriceField.tag = 1
-//        currentAmountField.tag = 2
-//        addPriceField.tag = 3
-//        addAmountField.tag = 4
+        for textField in allTextFields {
+            guard let placeholderText = textField.placeholder else {
+                return
+            }
+            textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+        }
+        //        currentPriceField.tag = 1
+        //        currentAmountField.tag = 2
+        //        addPriceField.tag = 3
+        //        addAmountField.tag = 4
         
-//        currentPriceField.addButton()
-//        currentAmountField.addButton()
-//        addPriceField.addButton()
-//        addAmountField.addButton()
+        //        currentPriceField.addButton()
+        //        currentAmountField.addButton()
+        //        addPriceField.addButton()
+        //        addAmountField.addButton()
     }
     
     func userDefaultsClear() {
@@ -123,7 +138,7 @@ class ViewController: UIViewController {
         }
         
         userDefaults.set(addPrice, forKey: "addPrice")
-
+        
         checkAddTotalField()
         checkCurrentPercentField()
         checkFinalField()
@@ -154,7 +169,7 @@ class ViewController: UIViewController {
         } else {
             let currentSum = currentPrice * currentAmount
             userDefaults.set(currentSum, forKey: "currentSum")
-            currentTotalPriceField.text = makeCommaString(num: Double(currentSum))
+            currentTotalPriceField.text = makeCommaString(num: currentSum)
         }
     }
     
@@ -167,7 +182,7 @@ class ViewController: UIViewController {
         } else {
             let addSum = addPrice * addAmount
             userDefaults.set(addSum, forKey: "addSum")
-            addTotalPriceField.text = makeCommaString(num: Double(addSum))
+            addTotalPriceField.text = makeCommaString(num: addSum)
         }
     }
     
@@ -186,10 +201,10 @@ class ViewController: UIViewController {
             let currentSum = userDefaults.double(forKey: "currentSum")
             let addSum = userDefaults.double(forKey: "addSum")
             let average = (currentSum + addSum) / (currentAmount + addAmount)
-            let percent = ((Double(addPrice) / Double(average)) - 1) * 100
-            finalTotalPriceField.text = makeCommaString(num: Double(currentSum + addSum))
-            finalAmountField.text = makeCommaString(num: Double(currentAmount + addAmount))
-            finalPriceField.text = makeCommaString(num: Double(average))
+            let percent = ((addPrice / average) - 1) * 100
+            finalTotalPriceField.text = makeCommaString(num: currentSum + addSum)
+            finalAmountField.text = makeCommaString(num: currentAmount + addAmount)
+            finalPriceField.text = makeCommaString(num: average)
             finalPercentField.text = makeCommaString(num: percent)
         }
     }
@@ -236,9 +251,15 @@ extension ViewController: UITextFieldDelegate {
         }
         
         var combinedText = commaRemovedText + string
+        var commaAfterCount = 0
         
-        // backspace 입력받았을 때
-        if string.isEmpty || combinedText.count > 9 {
+        if combinedText.contains(".") {
+            let arr = combinedText.components(separatedBy: ".")
+            commaAfterCount = arr[1].count
+        }
+        
+        // backspace 입력받았을 때, 전체 길이 9, 콤마 이후에 3개 -> 더 입력되지 않도록 자른다.
+        if string.isEmpty || combinedText.count > (9 + commaAfterCount) || commaAfterCount > 3 {
             // 마지막 하나만 남았을 경우
             if combinedText.count == 1 {
                 textField.text = .none
@@ -258,6 +279,7 @@ extension ViewController: UITextFieldDelegate {
             return false
         }
         
+        // 소수점 입력
         if string == "." {
             if !(formatString.contains(".")) {
                 formatString.append(".")
@@ -279,12 +301,12 @@ extension ViewController: UITextFieldDelegate {
 //        let down = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: nil)
 //        let up = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(goToPrevField))
 //        let down = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: #selector(goToNextField))
-        
+
 //        toolbar.items = [up, down]
 //        toolbar.sizeToFit()
 //        self.inputAccessoryView = toolbar
 //    }
-    
+
 //    @objc func goToPrevField() {
 //        self.resignFirstResponder()
 //        let prevFieldTag = self.tag - 1
