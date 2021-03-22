@@ -47,6 +47,8 @@ class ViewController: UIViewController {
         addPriceField.delegate = self
         addAmountField.delegate = self
         
+//        currentPriceField.keyboardType = .
+        
 //        currentPriceField.tag = 1
 //        currentAmountField.tag = 2
 //        addPriceField.tag = 3
@@ -67,10 +69,18 @@ class ViewController: UIViewController {
         userDefaults.set(0, forKey: "addSum")
     }
     
+    func makeCommaString(num: Double) -> String? {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 2
+        let formatString = numberFormatter.string(from: NSNumber(value: num))
+        return formatString
+    }
+    
     @objc func currentPriceEdit() {
         guard let commaRemovedPrice = currentPriceField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
-        guard let currentPrice = Int(commaRemovedPrice) else {
+        guard let currentPrice = Double(commaRemovedPrice) else {
             userDefaults.set(0, forKey: "currentPrice")
             currentTotalPriceField.text = .none
             currentPercentField.text = .none
@@ -104,7 +114,7 @@ class ViewController: UIViewController {
     @objc func addPriceEdit() {
         guard let commaRemovedPrice = addPriceField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
-        guard let addPrice = Int(commaRemovedPrice) else {
+        guard let addPrice = Double(commaRemovedPrice) else {
             userDefaults.set(0, forKey: "addPrice")
             addTotalPriceField.text = .none
             currentPercentField.text = .none
@@ -135,17 +145,9 @@ class ViewController: UIViewController {
         checkFinalField()
     }
     
-    func makeCommaString(num: Double) -> String? {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 2
-        let formatString = numberFormatter.string(from: NSNumber(value: num))
-        return formatString
-    }
-    
     func checkCurrentTotalField() {
-        let currentPrice = userDefaults.integer(forKey: "currentPrice")
-        let currentAmount = userDefaults.integer(forKey: "currentAmount")
+        let currentPrice = userDefaults.double(forKey: "currentPrice")
+        let currentAmount = userDefaults.double(forKey: "currentAmount")
         
         if currentPrice == 0 || currentAmount == 0 {
             currentTotalPriceField.text = .none
@@ -157,8 +159,8 @@ class ViewController: UIViewController {
     }
     
     func checkAddTotalField() {
-        let addPrice = userDefaults.integer(forKey: "addPrice")
-        let addAmount = userDefaults.integer(forKey: "addAmount")
+        let addPrice = userDefaults.double(forKey: "addPrice")
+        let addAmount = userDefaults.double(forKey: "addAmount")
         
         if addPrice == 0 || addAmount == 0 {
             addTotalPriceField.text = .none
@@ -170,10 +172,10 @@ class ViewController: UIViewController {
     }
     
     func checkFinalField() {
-        let currentPrice = userDefaults.integer(forKey: "currentPrice")
-        let currentAmount = userDefaults.integer(forKey: "currentAmount")
-        let addPrice = userDefaults.integer(forKey: "addPrice")
-        let addAmount = userDefaults.integer(forKey: "addAmount")
+        let currentPrice = userDefaults.double(forKey: "currentPrice")
+        let currentAmount = userDefaults.double(forKey: "currentAmount")
+        let addPrice = userDefaults.double(forKey: "addPrice")
+        let addAmount = userDefaults.double(forKey: "addAmount")
         
         if currentPrice == 0 || addPrice == 0 || currentAmount == 0 || addAmount == 0 {
             finalPriceField.text = .none
@@ -181,8 +183,8 @@ class ViewController: UIViewController {
             finalTotalPriceField.text = .none
             finalPercentField.text = .none
         } else {
-            let currentSum = userDefaults.integer(forKey: "currentSum")
-            let addSum = userDefaults.integer(forKey: "addSum")
+            let currentSum = userDefaults.double(forKey: "currentSum")
+            let addSum = userDefaults.double(forKey: "addSum")
             let average = (currentSum + addSum) / (currentAmount + addAmount)
             let percent = ((Double(addPrice) / Double(average)) - 1) * 100
             finalTotalPriceField.text = makeCommaString(num: Double(currentSum + addSum))
@@ -219,26 +221,34 @@ class ViewController: UIViewController {
         addTotalPriceField.text = .none
     }
     
+    @IBAction func touchSettingButton(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "선택", message: nil, preferredStyle: .actionSheet)
+
+        alert.addAction(UIAlertAction(title: "원화", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "달러", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: false, completion: nil)
+    }
 }
 
 extension ViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField.text!.count > 11 {
-            textField.deleteBackward()
-        }
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 3
         
         guard let commaRemovedText = textField.text?.replacingOccurrences(of: ",", with: "") else {
             return false
         }
         
         var combinedText = commaRemovedText + string
+        print(combinedText)
         
         // backspace 입력받았을 때
-        if string.isEmpty {
+        if string.isEmpty || combinedText.count > 9 {
             // 마지막 하나만 남았을 경우
             if combinedText.count == 1 {
                 textField.text = .none
@@ -254,36 +264,36 @@ extension ViewController: UITextFieldDelegate {
             return false
         }
         
-        let formatString = numberFormatter.string(from: formatNumber)
+        guard var formatString = numberFormatter.string(from: formatNumber) else {
+            return false
+        }
+        
+        if string == "." {
+            if !(formatString.contains(".")) {
+                formatString.append(".")
+            }
+        }
         textField.text = formatString
         textField.sendActions(for: .editingChanged)
         return false
     }
-    
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        textField.backgroundColor = #colorLiteral(red: 0.7800276875, green: 0.77757442, blue: 0.8165202141, alpha: 1)
-//    }
-//    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        textField.backgroundColor = .none
-//    }
 }
 
-extension UITextField {
-    
-    func addButton() {
-        let toolbar = UIToolbar()
-        toolbar.barStyle = .default
-        
-        let up = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: nil)
-        let down = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: nil)
+//extension UITextField {
+//
+//    func addButton() {
+//        let toolbar = UIToolbar()
+//        toolbar.barStyle = .default
+//
+//        let up = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: nil)
+//        let down = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: nil)
 //        let up = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(goToPrevField))
 //        let down = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: #selector(goToNextField))
         
-        toolbar.items = [up, down]
-        toolbar.sizeToFit()
-        self.inputAccessoryView = toolbar
-    }
+//        toolbar.items = [up, down]
+//        toolbar.sizeToFit()
+//        self.inputAccessoryView = toolbar
+//    }
     
 //    @objc func goToPrevField() {
 //        self.resignFirstResponder()
@@ -310,4 +320,4 @@ extension UITextField {
 //            print("n")
 //        }
 //    }
-}
+//}

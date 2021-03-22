@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최종 보유" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brB-Sr-x2g">
-                                <rect key="frame" x="16" y="60" width="343" height="17"/>
+                                <rect key="frame" x="16" y="52" width="343" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="9pf-eT-Kph" userLabel="스택뷰1">
-                                <rect key="frame" x="16" y="85" width="343" height="80"/>
+                                <rect key="frame" x="16" y="77" width="343" height="80"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hgJ-te-0pa" userLabel="0.6스택뷰">
                                         <rect key="frame" x="0.0" y="0.0" width="206" height="80"/>
@@ -115,7 +115,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Rjt-hi-1dN" userLabel="스택뷰2">
-                                <rect key="frame" x="16" y="206" width="343" height="80"/>
+                                <rect key="frame" x="16" y="190" width="343" height="80"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="F76-9r-DZY" userLabel="0.6스택뷰">
                                         <rect key="frame" x="0.0" y="0.0" width="206" height="80"/>
@@ -126,7 +126,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="현재 평균단가" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Xf-CU-auj">
                                                         <rect key="frame" x="0.0" y="0.0" width="185" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDS-We-T1v">
                                                         <rect key="frame" x="190" y="0.0" width="16" height="40"/>
@@ -207,19 +207,19 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 보유" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPT-PG-Hwz">
-                                <rect key="frame" x="16" y="181" width="343" height="17"/>
+                                <rect key="frame" x="16" y="165" width="343" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="추가 매수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDN-h8-t8P">
-                                <rect key="frame" x="16" y="302" width="343" height="17"/>
+                                <rect key="frame" x="16" y="278" width="343" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="4jR-Z1-J7P" userLabel="스택뷰3">
-                                <rect key="frame" x="16" y="327" width="343" height="80"/>
+                                <rect key="frame" x="16" y="303" width="343" height="80"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mwi-9Y-gpy" userLabel="0.6스택뷰">
                                         <rect key="frame" x="0.0" y="0.0" width="206" height="80"/>
@@ -230,7 +230,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="추가 평균단가" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ncl-nn-Uhh">
                                                         <rect key="frame" x="0.0" y="0.0" width="185" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCP-dz-jTW">
                                                         <rect key="frame" x="190" y="0.0" width="16" height="40"/>
@@ -312,23 +312,27 @@
                             <constraint firstItem="KPT-PG-Hwz" firstAttribute="trailing" secondItem="Rjt-hi-1dN" secondAttribute="trailing" id="8bl-PQ-Siq"/>
                             <constraint firstItem="XDN-h8-t8P" firstAttribute="leading" secondItem="4jR-Z1-J7P" secondAttribute="leading" id="AZX-U0-vr3"/>
                             <constraint firstItem="4jR-Z1-J7P" firstAttribute="top" secondItem="XDN-h8-t8P" secondAttribute="bottom" constant="8" id="DFa-qG-nm9"/>
-                            <constraint firstItem="XDN-h8-t8P" firstAttribute="top" secondItem="Rjt-hi-1dN" secondAttribute="bottom" constant="16" id="DIN-1H-X3F"/>
+                            <constraint firstItem="XDN-h8-t8P" firstAttribute="top" secondItem="Rjt-hi-1dN" secondAttribute="bottom" constant="8" id="DIN-1H-X3F"/>
                             <constraint firstItem="4jR-Z1-J7P" firstAttribute="trailing" secondItem="xNl-mD-CCP" secondAttribute="trailing" constant="-16" id="LE8-oH-aDo"/>
                             <constraint firstItem="4jR-Z1-J7P" firstAttribute="leading" secondItem="xNl-mD-CCP" secondAttribute="leading" constant="16" id="UzV-fO-PVq"/>
-                            <constraint firstItem="KPT-PG-Hwz" firstAttribute="top" secondItem="9pf-eT-Kph" secondAttribute="bottom" constant="16" id="XNJ-hy-5iX"/>
+                            <constraint firstItem="KPT-PG-Hwz" firstAttribute="top" secondItem="9pf-eT-Kph" secondAttribute="bottom" constant="8" id="XNJ-hy-5iX"/>
                             <constraint firstItem="Rjt-hi-1dN" firstAttribute="leading" secondItem="xNl-mD-CCP" secondAttribute="leading" constant="16" id="Zn9-Ov-l8V"/>
                             <constraint firstItem="XDN-h8-t8P" firstAttribute="trailing" secondItem="4jR-Z1-J7P" secondAttribute="trailing" id="a9b-Lq-OdI"/>
                             <constraint firstItem="KPT-PG-Hwz" firstAttribute="leading" secondItem="Rjt-hi-1dN" secondAttribute="leading" id="dqn-Dj-DaQ"/>
                             <constraint firstItem="brB-Sr-x2g" firstAttribute="leading" secondItem="9pf-eT-Kph" secondAttribute="leading" id="hww-mZ-8ne"/>
                             <constraint firstItem="9pf-eT-Kph" firstAttribute="top" secondItem="brB-Sr-x2g" secondAttribute="bottom" constant="8" id="imz-oM-YhV"/>
                             <constraint firstItem="9pf-eT-Kph" firstAttribute="trailing" secondItem="xNl-mD-CCP" secondAttribute="trailing" constant="-16" id="jXo-Ji-ful"/>
-                            <constraint firstItem="brB-Sr-x2g" firstAttribute="top" secondItem="xNl-mD-CCP" secondAttribute="top" constant="16" id="jwP-QZ-AEz"/>
+                            <constraint firstItem="brB-Sr-x2g" firstAttribute="top" secondItem="xNl-mD-CCP" secondAttribute="top" constant="8" id="jwP-QZ-AEz"/>
                             <constraint firstItem="Rjt-hi-1dN" firstAttribute="top" secondItem="KPT-PG-Hwz" secondAttribute="bottom" constant="8" id="wjr-oC-P7U"/>
                             <constraint firstItem="9pf-eT-Kph" firstAttribute="leading" secondItem="xNl-mD-CCP" secondAttribute="leading" constant="16" id="zYJ-pp-fnB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vdC-we-8V5">
-                        <barButtonItem key="leftBarButtonItem" image="gearshape" catalog="system" id="3FX-y5-CnW"/>
+                        <barButtonItem key="leftBarButtonItem" image="gearshape" catalog="system" id="3FX-y5-CnW">
+                            <connections>
+                                <action selector="touchSettingButton:" destination="qVK-4u-mTA" id="O4s-qb-RQc"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Clear" id="44q-ls-YDx">
                             <connections>
                                 <action selector="touchClearButton:" destination="qVK-4u-mTA" id="bhM-Bh-pdY"/>
