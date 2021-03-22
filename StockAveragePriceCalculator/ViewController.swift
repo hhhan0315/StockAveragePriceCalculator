@@ -221,15 +221,6 @@ class ViewController: UIViewController {
         addTotalPriceField.text = .none
     }
     
-    @IBAction func touchSettingButton(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "선택", message: nil, preferredStyle: .actionSheet)
-
-        alert.addAction(UIAlertAction(title: "원화", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "달러", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-        
-        self.present(alert, animated: false, completion: nil)
-    }
 }
 
 extension ViewController: UITextFieldDelegate {
@@ -245,7 +236,6 @@ extension ViewController: UITextFieldDelegate {
         }
         
         var combinedText = commaRemovedText + string
-        print(combinedText)
         
         // backspace 입력받았을 때
         if string.isEmpty || combinedText.count > 9 {
