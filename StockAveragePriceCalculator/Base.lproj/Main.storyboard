@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6lK-iN-i9Z" userLabel="View1">
-                                <rect key="frame" x="16" y="44" width="343" height="100"/>
+                                <rect key="frame" x="16" y="48" width="343" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최종 보유" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brB-Sr-x2g">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="18"/>
@@ -27,51 +27,33 @@
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="최종 평균단가" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5cX-ha-aYM" userLabel="최종평균단가 필드">
                                         <rect key="frame" x="0.0" y="18" width="188.5" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="eyr-X2-z4g"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KmI-hS-HSK">
-                                        <rect key="frame" x="330" y="18" width="13" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="IR7-Gc-n0w"/>
-                                        </constraints>
+                                        <rect key="frame" x="330" y="29" width="13" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="최종 수량" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D1h-iO-vti" userLabel="최종 수량 필드">
-                                        <rect key="frame" x="190" y="18" width="137" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="K2d-i4-bKg"/>
-                                        </constraints>
+                                        <rect key="frame" x="196.5" y="18" width="130.5" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cpy-HZ-pnx">
-                                        <rect key="frame" x="329" y="58" width="14" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="sZR-mw-Cx0"/>
-                                        </constraints>
+                                        <rect key="frame" x="328.5" y="69" width="14.5" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="최종 금액" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QKN-ee-Zsn" userLabel="최종 금액 필드">
                                         <rect key="frame" x="0.0" y="58" width="188.5" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="hUh-F1-NgT"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="최종 수익률" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hcv-GJ-KHi" userLabel="최종 수익률 필드">
-                                        <rect key="frame" x="190" y="58" width="137" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="4XT-w0-yMe"/>
-                                        </constraints>
+                                        <rect key="frame" x="196.5" y="58" width="130.5" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -79,29 +61,38 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="hcv-GJ-KHi" firstAttribute="trailing" secondItem="D1h-iO-vti" secondAttribute="trailing" id="3qr-CG-LJ9"/>
+                                    <constraint firstItem="Cpy-HZ-pnx" firstAttribute="height" secondItem="KmI-hS-HSK" secondAttribute="height" id="4w3-v6-fxu"/>
                                     <constraint firstItem="brB-Sr-x2g" firstAttribute="trailing" secondItem="6lK-iN-i9Z" secondAttribute="trailing" id="9Yt-eB-H24"/>
-                                    <constraint firstItem="QKN-ee-Zsn" firstAttribute="width" secondItem="5cX-ha-aYM" secondAttribute="width" id="9ha-zn-525"/>
+                                    <constraint firstItem="QKN-ee-Zsn" firstAttribute="width" relation="greaterThanOrEqual" secondItem="5cX-ha-aYM" secondAttribute="width" id="9ha-zn-525"/>
                                     <constraint firstItem="hcv-GJ-KHi" firstAttribute="centerY" secondItem="QKN-ee-Zsn" secondAttribute="centerY" id="GuX-uJ-vUK"/>
                                     <constraint firstItem="QKN-ee-Zsn" firstAttribute="top" secondItem="5cX-ha-aYM" secondAttribute="bottom" id="IJx-X3-0lj"/>
-                                    <constraint firstAttribute="height" constant="100" id="Mbz-Z6-C1F"/>
+                                    <constraint firstItem="D1h-iO-vti" firstAttribute="leading" secondItem="5cX-ha-aYM" secondAttribute="trailing" constant="8" symbolic="YES" id="KRG-Il-eGn"/>
+                                    <constraint firstItem="hcv-GJ-KHi" firstAttribute="height" secondItem="5cX-ha-aYM" secondAttribute="height" id="NXj-ph-4Ua"/>
                                     <constraint firstItem="5cX-ha-aYM" firstAttribute="leading" secondItem="brB-Sr-x2g" secondAttribute="leading" id="Ohu-JY-znn"/>
                                     <constraint firstItem="Cpy-HZ-pnx" firstAttribute="trailing" secondItem="KmI-hS-HSK" secondAttribute="trailing" id="QY7-hS-j3I"/>
-                                    <constraint firstItem="D1h-iO-vti" firstAttribute="width" secondItem="brB-Sr-x2g" secondAttribute="width" multiplier="0.4" id="Qsl-ND-zzL"/>
+                                    <constraint firstItem="D1h-iO-vti" firstAttribute="width" secondItem="brB-Sr-x2g" secondAttribute="width" multiplier="0.38" id="Qsl-ND-zzL"/>
                                     <constraint firstItem="KmI-hS-HSK" firstAttribute="trailing" secondItem="brB-Sr-x2g" secondAttribute="trailing" id="TOH-b8-Mcf"/>
                                     <constraint firstItem="Cpy-HZ-pnx" firstAttribute="centerY" secondItem="QKN-ee-Zsn" secondAttribute="centerY" id="TOL-em-N2s"/>
                                     <constraint firstItem="hcv-GJ-KHi" firstAttribute="width" secondItem="D1h-iO-vti" secondAttribute="width" id="UHO-eR-eZg"/>
+                                    <constraint firstItem="Cpy-HZ-pnx" firstAttribute="leading" secondItem="hcv-GJ-KHi" secondAttribute="trailing" constant="1.5" id="UQD-Zp-kAU"/>
+                                    <constraint firstItem="KmI-hS-HSK" firstAttribute="height" secondItem="5cX-ha-aYM" secondAttribute="height" multiplier="0.45" id="Yok-uF-FDm"/>
                                     <constraint firstItem="brB-Sr-x2g" firstAttribute="top" secondItem="6lK-iN-i9Z" secondAttribute="top" id="bFZ-hw-ySE"/>
+                                    <constraint firstItem="brB-Sr-x2g" firstAttribute="height" secondItem="6lK-iN-i9Z" secondAttribute="height" multiplier="0.18" id="dSs-5U-yJP"/>
                                     <constraint firstItem="D1h-iO-vti" firstAttribute="centerY" secondItem="5cX-ha-aYM" secondAttribute="centerY" id="dlO-Mz-PhO"/>
                                     <constraint firstItem="5cX-ha-aYM" firstAttribute="width" secondItem="brB-Sr-x2g" secondAttribute="width" multiplier="0.55" id="eee-NB-4dz"/>
+                                    <constraint firstItem="QKN-ee-Zsn" firstAttribute="height" secondItem="5cX-ha-aYM" secondAttribute="height" id="hrq-sX-cPU"/>
+                                    <constraint firstItem="D1h-iO-vti" firstAttribute="height" secondItem="5cX-ha-aYM" secondAttribute="height" id="jej-Ob-l0g"/>
                                     <constraint firstItem="5cX-ha-aYM" firstAttribute="top" secondItem="brB-Sr-x2g" secondAttribute="bottom" id="nTJ-eB-eC9"/>
+                                    <constraint firstItem="5cX-ha-aYM" firstAttribute="height" secondItem="6lK-iN-i9Z" secondAttribute="height" multiplier="0.4" id="olg-Mk-67F"/>
                                     <constraint firstItem="D1h-iO-vti" firstAttribute="trailing" secondItem="KmI-hS-HSK" secondAttribute="leading" constant="-3" id="qCR-Tc-eym"/>
                                     <constraint firstItem="KmI-hS-HSK" firstAttribute="centerY" secondItem="5cX-ha-aYM" secondAttribute="centerY" id="seG-sf-3mP"/>
                                     <constraint firstItem="QKN-ee-Zsn" firstAttribute="leading" secondItem="5cX-ha-aYM" secondAttribute="leading" id="svd-Yi-rSO"/>
                                     <constraint firstItem="brB-Sr-x2g" firstAttribute="leading" secondItem="6lK-iN-i9Z" secondAttribute="leading" id="vmd-iw-Xyu"/>
+                                    <constraint firstItem="hcv-GJ-KHi" firstAttribute="leading" relation="lessThanOrEqual" secondItem="QKN-ee-Zsn" secondAttribute="trailing" constant="8" symbolic="YES" id="xTe-gZ-xjD"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F8Y-mk-01b" userLabel="View2">
-                                <rect key="frame" x="16" y="144" width="343" height="100"/>
+                                <rect key="frame" x="16" y="152" width="343" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 보유" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPT-PG-Hwz">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="18"/>
@@ -111,50 +102,32 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="현재 평균단가" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Xf-CU-auj" userLabel="현재 평균단가 필드">
                                         <rect key="frame" x="0.0" y="18" width="188.5" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="N0q-Xs-Gdq"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="현재 수량" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aDD-ii-6xV" userLabel="현재 수량 필드">
-                                        <rect key="frame" x="190" y="18" width="137" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="W6J-AS-GR2"/>
-                                        </constraints>
+                                        <rect key="frame" x="196.5" y="18" width="130.5" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAd-uj-rpF">
-                                        <rect key="frame" x="330" y="18" width="13" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Ovg-ws-C0z"/>
-                                        </constraints>
+                                        <rect key="frame" x="330" y="29" width="13" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="현재 수익률" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3TI-af-Dxs" userLabel="현재 수익률 필드">
-                                        <rect key="frame" x="190" y="58" width="137" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="3Jd-3t-XSc"/>
-                                        </constraints>
+                                        <rect key="frame" x="196.5" y="58" width="130.5" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="보유 금액" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8LC-pg-dZM" userLabel="현재 금액 필드">
                                         <rect key="frame" x="0.0" y="58" width="188.5" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Pad-zB-kqk"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uj8-i1-SjL">
-                                        <rect key="frame" x="329" y="58" width="14" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="UrA-9c-32a"/>
-                                        </constraints>
+                                        <rect key="frame" x="328.5" y="69" width="14.5" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -166,26 +139,34 @@
                                     <constraint firstItem="aDD-ii-6xV" firstAttribute="centerY" secondItem="9Xf-CU-auj" secondAttribute="centerY" id="2pK-Oq-UR4"/>
                                     <constraint firstItem="uj8-i1-SjL" firstAttribute="trailing" secondItem="kAd-uj-rpF" secondAttribute="trailing" id="3oh-67-hhN"/>
                                     <constraint firstItem="9Xf-CU-auj" firstAttribute="top" secondItem="KPT-PG-Hwz" secondAttribute="bottom" id="5jt-ZY-ROD"/>
+                                    <constraint firstItem="KPT-PG-Hwz" firstAttribute="height" secondItem="F8Y-mk-01b" secondAttribute="height" multiplier="0.18" id="5zE-wm-Guw"/>
                                     <constraint firstItem="aDD-ii-6xV" firstAttribute="trailing" secondItem="kAd-uj-rpF" secondAttribute="leading" constant="-3" id="BE4-u4-B98"/>
+                                    <constraint firstItem="aDD-ii-6xV" firstAttribute="height" secondItem="9Xf-CU-auj" secondAttribute="height" id="DBc-Am-75N"/>
                                     <constraint firstItem="KPT-PG-Hwz" firstAttribute="top" secondItem="F8Y-mk-01b" secondAttribute="top" id="IMM-xg-uQz"/>
-                                    <constraint firstAttribute="height" constant="100" id="JOG-ym-CdB"/>
                                     <constraint firstItem="3TI-af-Dxs" firstAttribute="width" secondItem="aDD-ii-6xV" secondAttribute="width" id="KGt-xO-Z11"/>
-                                    <constraint firstItem="aDD-ii-6xV" firstAttribute="width" secondItem="F8Y-mk-01b" secondAttribute="width" multiplier="0.4" id="O0i-5S-Vdb"/>
+                                    <constraint firstItem="aDD-ii-6xV" firstAttribute="width" secondItem="F8Y-mk-01b" secondAttribute="width" multiplier="0.38" id="O0i-5S-Vdb"/>
                                     <constraint firstItem="9Xf-CU-auj" firstAttribute="leading" secondItem="KPT-PG-Hwz" secondAttribute="leading" id="P0w-D8-PcJ"/>
+                                    <constraint firstItem="9Xf-CU-auj" firstAttribute="height" secondItem="F8Y-mk-01b" secondAttribute="height" multiplier="0.4" id="TEq-Vu-t5N"/>
                                     <constraint firstItem="kAd-uj-rpF" firstAttribute="trailing" secondItem="KPT-PG-Hwz" secondAttribute="trailing" id="TXm-KL-vGe"/>
+                                    <constraint firstItem="uj8-i1-SjL" firstAttribute="leading" secondItem="3TI-af-Dxs" secondAttribute="trailing" constant="1.5" id="TkD-0k-Zcv"/>
                                     <constraint firstItem="KPT-PG-Hwz" firstAttribute="trailing" secondItem="F8Y-mk-01b" secondAttribute="trailing" id="YW4-sG-7Tc"/>
+                                    <constraint firstItem="3TI-af-Dxs" firstAttribute="leading" relation="lessThanOrEqual" secondItem="8LC-pg-dZM" secondAttribute="trailing" constant="8" symbolic="YES" id="as6-ln-7Td"/>
                                     <constraint firstItem="8LC-pg-dZM" firstAttribute="top" secondItem="9Xf-CU-auj" secondAttribute="bottom" id="c49-Qj-4VJ"/>
                                     <constraint firstItem="3TI-af-Dxs" firstAttribute="centerY" secondItem="8LC-pg-dZM" secondAttribute="centerY" id="eNK-Ee-Klg"/>
                                     <constraint firstItem="9Xf-CU-auj" firstAttribute="width" secondItem="KPT-PG-Hwz" secondAttribute="width" multiplier="0.55" id="fgC-j8-LGi"/>
-                                    <constraint firstItem="8LC-pg-dZM" firstAttribute="width" secondItem="9Xf-CU-auj" secondAttribute="width" id="gfG-cx-f7v"/>
+                                    <constraint firstItem="8LC-pg-dZM" firstAttribute="width" relation="greaterThanOrEqual" secondItem="9Xf-CU-auj" secondAttribute="width" id="gfG-cx-f7v"/>
+                                    <constraint firstItem="aDD-ii-6xV" firstAttribute="leading" secondItem="9Xf-CU-auj" secondAttribute="trailing" constant="8" symbolic="YES" id="gkl-GQ-o8K"/>
                                     <constraint firstItem="kAd-uj-rpF" firstAttribute="centerY" secondItem="9Xf-CU-auj" secondAttribute="centerY" id="kbC-Ex-q2k"/>
                                     <constraint firstItem="uj8-i1-SjL" firstAttribute="centerY" secondItem="8LC-pg-dZM" secondAttribute="centerY" id="ks8-lX-WJJ"/>
+                                    <constraint firstItem="8LC-pg-dZM" firstAttribute="height" secondItem="9Xf-CU-auj" secondAttribute="height" id="q8A-A0-VXp"/>
                                     <constraint firstItem="KPT-PG-Hwz" firstAttribute="leading" secondItem="F8Y-mk-01b" secondAttribute="leading" id="rfP-ko-WXh"/>
+                                    <constraint firstItem="3TI-af-Dxs" firstAttribute="height" secondItem="9Xf-CU-auj" secondAttribute="height" id="xdx-zP-bB2"/>
                                     <constraint firstItem="3TI-af-Dxs" firstAttribute="trailing" secondItem="aDD-ii-6xV" secondAttribute="trailing" id="yG0-Ta-ASr"/>
+                                    <constraint firstItem="kAd-uj-rpF" firstAttribute="height" secondItem="9Xf-CU-auj" secondAttribute="height" multiplier="0.45" id="zRz-aF-Ovc"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vx1-0Y-EbH" userLabel="View3">
-                                <rect key="frame" x="16" y="244" width="343" height="100"/>
+                                <rect key="frame" x="16" y="256" width="343" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="추가 매수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDN-h8-t8P">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="18"/>
@@ -195,33 +176,21 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="추가 평균단가" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ncl-nn-Uhh" userLabel="추가 평균단가 필드">
                                         <rect key="frame" x="0.0" y="18" width="188.5" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="LN6-4x-8d0"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="추가 금액" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="egF-MB-Gbj" userLabel="추가 금액 필드">
                                         <rect key="frame" x="0.0" y="58" width="188.5" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Qxs-ll-O0O"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="추가 수량" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7fm-Rf-m3z" userLabel="추가 수량 필드">
-                                        <rect key="frame" x="190" y="18" width="137" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="pns-o7-VpB"/>
-                                        </constraints>
+                                        <rect key="frame" x="196.5" y="18" width="130.5" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDb-IU-IRh">
-                                        <rect key="frame" x="330" y="18" width="13" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="uTF-Q9-nBi"/>
-                                        </constraints>
+                                        <rect key="frame" x="330" y="29" width="13" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -229,19 +198,26 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="1jr-E0-HtG"/>
+                                    <constraint firstItem="ncl-nn-Uhh" firstAttribute="height" secondItem="Vx1-0Y-EbH" secondAttribute="height" multiplier="0.4" id="2pX-fZ-5XU"/>
+                                    <constraint firstItem="wDb-IU-IRh" firstAttribute="leading" secondItem="7fm-Rf-m3z" secondAttribute="trailing" constant="3" id="552-jf-eoU"/>
+                                    <constraint firstItem="XDN-h8-t8P" firstAttribute="height" secondItem="Vx1-0Y-EbH" secondAttribute="height" multiplier="0.18" id="8hc-Yu-FtJ"/>
+                                    <constraint firstItem="7fm-Rf-m3z" firstAttribute="leading" secondItem="ncl-nn-Uhh" secondAttribute="trailing" constant="8" symbolic="YES" id="9Zw-tT-Pb2"/>
+                                    <constraint firstItem="wDb-IU-IRh" firstAttribute="height" secondItem="ncl-nn-Uhh" secondAttribute="height" multiplier="0.45" id="Foi-5h-Jal"/>
                                     <constraint firstItem="XDN-h8-t8P" firstAttribute="top" secondItem="Vx1-0Y-EbH" secondAttribute="top" id="Iya-54-bTS"/>
                                     <constraint firstItem="7fm-Rf-m3z" firstAttribute="centerY" secondItem="ncl-nn-Uhh" secondAttribute="centerY" id="KXj-xq-pc4"/>
                                     <constraint firstItem="XDN-h8-t8P" firstAttribute="leading" secondItem="Vx1-0Y-EbH" secondAttribute="leading" id="LDA-z3-mFK"/>
                                     <constraint firstItem="ncl-nn-Uhh" firstAttribute="width" secondItem="XDN-h8-t8P" secondAttribute="width" multiplier="0.55" id="NXj-dq-ozd"/>
-                                    <constraint firstItem="egF-MB-Gbj" firstAttribute="width" secondItem="ncl-nn-Uhh" secondAttribute="width" id="T2y-XG-Mwh"/>
+                                    <constraint firstItem="egF-MB-Gbj" firstAttribute="width" relation="greaterThanOrEqual" secondItem="ncl-nn-Uhh" secondAttribute="width" id="T2y-XG-Mwh"/>
                                     <constraint firstItem="egF-MB-Gbj" firstAttribute="leading" secondItem="ncl-nn-Uhh" secondAttribute="leading" id="UgK-Py-AnC"/>
                                     <constraint firstItem="ncl-nn-Uhh" firstAttribute="top" secondItem="XDN-h8-t8P" secondAttribute="bottom" id="Vgt-qb-xew"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="egF-MB-Gbj" secondAttribute="trailing" constant="20" symbolic="YES" id="Wet-9j-mFA"/>
                                     <constraint firstAttribute="trailing" secondItem="XDN-h8-t8P" secondAttribute="trailing" id="XC2-zX-QxR"/>
+                                    <constraint firstItem="egF-MB-Gbj" firstAttribute="height" secondItem="ncl-nn-Uhh" secondAttribute="height" id="XOJ-ks-1Wl"/>
                                     <constraint firstItem="7fm-Rf-m3z" firstAttribute="trailing" secondItem="wDb-IU-IRh" secondAttribute="leading" constant="-3" id="b6U-ke-1xk"/>
                                     <constraint firstItem="ncl-nn-Uhh" firstAttribute="leading" secondItem="XDN-h8-t8P" secondAttribute="leading" id="nUe-Mw-sDZ"/>
                                     <constraint firstItem="wDb-IU-IRh" firstAttribute="centerY" secondItem="ncl-nn-Uhh" secondAttribute="centerY" id="ra8-xw-9o5"/>
-                                    <constraint firstItem="7fm-Rf-m3z" firstAttribute="width" secondItem="XDN-h8-t8P" secondAttribute="width" multiplier="0.4" id="sio-03-QXq"/>
+                                    <constraint firstItem="7fm-Rf-m3z" firstAttribute="height" secondItem="ncl-nn-Uhh" secondAttribute="height" id="sb3-dy-FRf"/>
+                                    <constraint firstItem="7fm-Rf-m3z" firstAttribute="width" secondItem="XDN-h8-t8P" secondAttribute="width" multiplier="0.38" id="sio-03-QXq"/>
                                     <constraint firstItem="wDb-IU-IRh" firstAttribute="trailing" secondItem="XDN-h8-t8P" secondAttribute="trailing" id="xHE-hP-LDU"/>
                                     <constraint firstItem="egF-MB-Gbj" firstAttribute="top" secondItem="ncl-nn-Uhh" secondAttribute="bottom" id="yvt-gO-vGT"/>
                                 </constraints>
@@ -252,12 +228,15 @@
                         <constraints>
                             <constraint firstItem="Vx1-0Y-EbH" firstAttribute="trailing" secondItem="F8Y-mk-01b" secondAttribute="trailing" id="11U-as-sqP"/>
                             <constraint firstItem="6lK-iN-i9Z" firstAttribute="leading" secondItem="xNl-mD-CCP" secondAttribute="leading" constant="16" id="2Nx-Bu-KPj"/>
-                            <constraint firstItem="F8Y-mk-01b" firstAttribute="top" secondItem="6lK-iN-i9Z" secondAttribute="bottom" id="IqS-QU-WGn"/>
+                            <constraint firstItem="F8Y-mk-01b" firstAttribute="top" secondItem="6lK-iN-i9Z" secondAttribute="bottom" constant="4" id="IqS-QU-WGn"/>
                             <constraint firstItem="6lK-iN-i9Z" firstAttribute="trailing" secondItem="xNl-mD-CCP" secondAttribute="trailing" constant="-16" id="Jbi-Hy-gj1"/>
-                            <constraint firstItem="6lK-iN-i9Z" firstAttribute="top" secondItem="xNl-mD-CCP" secondAttribute="top" id="Ya4-vL-z2Y"/>
+                            <constraint firstItem="6lK-iN-i9Z" firstAttribute="top" secondItem="xNl-mD-CCP" secondAttribute="top" constant="4" id="Ya4-vL-z2Y"/>
                             <constraint firstItem="F8Y-mk-01b" firstAttribute="leading" secondItem="6lK-iN-i9Z" secondAttribute="leading" id="az9-Jn-lkg"/>
-                            <constraint firstItem="Vx1-0Y-EbH" firstAttribute="top" secondItem="F8Y-mk-01b" secondAttribute="bottom" id="dtp-lm-BHX"/>
+                            <constraint firstItem="Vx1-0Y-EbH" firstAttribute="top" secondItem="F8Y-mk-01b" secondAttribute="bottom" constant="4" id="dtp-lm-BHX"/>
+                            <constraint firstItem="F8Y-mk-01b" firstAttribute="height" secondItem="6lK-iN-i9Z" secondAttribute="height" id="gyy-eN-gcQ"/>
                             <constraint firstItem="Vx1-0Y-EbH" firstAttribute="leading" secondItem="F8Y-mk-01b" secondAttribute="leading" id="qho-nf-bsP"/>
+                            <constraint firstItem="6lK-iN-i9Z" firstAttribute="height" secondItem="4rt-ou-lBf" secondAttribute="height" multiplier="0.15" id="sCs-X3-lPp"/>
+                            <constraint firstItem="Vx1-0Y-EbH" firstAttribute="height" secondItem="6lK-iN-i9Z" secondAttribute="height" id="wQl-3K-cSl"/>
                             <constraint firstItem="F8Y-mk-01b" firstAttribute="trailing" secondItem="6lK-iN-i9Z" secondAttribute="trailing" id="zge-yz-xsZ"/>
                         </constraints>
                     </view>

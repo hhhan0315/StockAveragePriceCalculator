@@ -48,14 +48,14 @@ class ViewController: UIViewController {
         inputTextFields = [currentPriceField, currentAmountField, addPriceField, addAmountField]
         allTextFields = [finalPriceField, finalAmountField, finalTotalPriceField, finalPercentField, currentPriceField, currentAmountField, currentTotalPriceField, currentPercentField, addPriceField, addAmountField, addTotalPriceField]
         
-        for textField in inputTextFields {
+        for textField in inputTextFields { // textField 테두리가 너무 옅어서 살짝 진하게 만들었다.
             textField.delegate = self
             textField.layer.borderWidth = 1
             textField.layer.borderColor = UIColor.lightGray.cgColor
             textField.layer.cornerRadius = 5
         }
         
-        for textField in allTextFields {
+        for textField in allTextFields { // placeholder 도 색이 옅어서 변경
             guard let placeholderText = textField.placeholder else {
                 return
             }
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
     @objc func currentAmountEdit() {
         guard let commaRemovedAmount = currentAmountField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
-        guard let currentAmount = Int(commaRemovedAmount) else {
+        guard let currentAmount = Double(commaRemovedAmount) else {
             userDefaults.set(0, forKey: "currentAmount")
             currentTotalPriceField.text = .none
             checkFinalField()
@@ -145,7 +145,7 @@ class ViewController: UIViewController {
     @objc func addAmountEdit() {
         guard let commaRemovedAmount = addAmountField.text?.replacingOccurrences(of: ",", with: "") else { return }
         
-        guard let addAmount = Int(commaRemovedAmount) else {
+        guard let addAmount = Double(commaRemovedAmount) else {
             userDefaults.set(0, forKey: "addAmount")
             addTotalPriceField.text = .none
             checkFinalField()
@@ -242,7 +242,7 @@ extension ViewController: UITextFieldDelegate {
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 3
+        numberFormatter.maximumFractionDigits = 6
         
         guard let commaRemovedText = textField.text?.replacingOccurrences(of: ",", with: "") else {
             return false
@@ -257,7 +257,7 @@ extension ViewController: UITextFieldDelegate {
         }
         
         // backspace 입력받았을 때, 전체 길이 9, 콤마 이후에 3개 -> 더 입력되지 않도록 자른다.
-        if string.isEmpty || combinedText.count > (9 + commaAfterCount) || commaAfterCount > 3 {
+        if string.isEmpty || combinedText.count > (10 + commaAfterCount) || commaAfterCount > 6 {
             // 마지막 하나만 남았을 경우
             if combinedText.count == 1 {
                 textField.text = .none
