@@ -8,9 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var view1: UIView!
-    @IBOutlet weak var view2: UIView!
-    @IBOutlet weak var view3: UIView!
     
     @IBOutlet weak var finalPriceField: UITextField!
     @IBOutlet weak var finalAmountField: UITextField!
@@ -64,15 +61,16 @@ class ViewController: UIViewController {
             }
             textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         }
-        //        currentPriceField.tag = 1
-        //        currentAmountField.tag = 2
-        //        addPriceField.tag = 3
-        //        addAmountField.tag = 4
         
-        //        currentPriceField.addButton()
-        //        currentAmountField.addButton()
-        //        addPriceField.addButton()
-        //        addAmountField.addButton()
+        currentPriceField.tag = 2
+        currentAmountField.tag = 3
+        addPriceField.tag = 4
+        addAmountField.tag = 5
+        
+        currentPriceField.addButton()
+        currentAmountField.addButton()
+        addPriceField.addButton()
+        addAmountField.addButton()
     }
     
     func userDefaultsClear() {
@@ -291,45 +289,35 @@ extension ViewController: UITextFieldDelegate {
     }
 }
 
-//extension UITextField {
-//
-//    func addButton() {
-//        let toolbar = UIToolbar()
-//        toolbar.barStyle = .default
-//
-//        let up = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: nil)
-//        let down = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: nil)
-//        let up = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(goToPrevField))
-//        let down = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: #selector(goToNextField))
+extension UITextField {
 
-//        toolbar.items = [up, down]
-//        toolbar.sizeToFit()
-//        self.inputAccessoryView = toolbar
-//    }
+    func addButton() {
+        let toolbar = UIToolbar()
+        toolbar.barStyle = .default
 
-//    @objc func goToPrevField() {
-//        self.resignFirstResponder()
-//        let prevFieldTag = self.tag - 1
-//        print(prevFieldTag)
-//        if let prevField = self.superview?.superview?.viewWithTag(prevFieldTag) as? UITextField  {
-//            prevField.becomeFirstResponder()
-//            print("y")
-//        } else {
-//            self.becomeFirstResponder()
-//            print("n")
-//        }
-//    }
-//
-//    @objc func goToNextField() {
-//        self.resignFirstResponder()
-//        let nextFieldTag = self.tag + 1
-//        print(nextFieldTag)
-//        if let nextField = self.superview?.viewWithTag(nextFieldTag) as? UITextField {
-//            nextField.becomeFirstResponder()
-//            print("y")
-//        } else {
-//            self.becomeFirstResponder()
-//            print("n")
-//        }
-//    }
-//}
+        let up = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(goToPrevField))
+        let down = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: #selector(goToNextField))
+
+        toolbar.items = [up, down]
+        toolbar.sizeToFit()
+        self.inputAccessoryView = toolbar
+    }
+
+    @objc func goToPrevField() {
+        let prevFieldTag = self.tag - 1
+        if let prevField = self.superview?.superview?.viewWithTag(prevFieldTag)  {
+            prevField.becomeFirstResponder()
+        } else {
+            self.resignFirstResponder()
+        }
+    }
+
+    @objc func goToNextField() {
+        let nextFieldTag = self.tag + 1
+        if let nextField = self.superview?.superview?.viewWithTag(nextFieldTag) {
+            nextField.becomeFirstResponder()
+        } else {
+            self.resignFirstResponder()
+        }
+    }
+}
