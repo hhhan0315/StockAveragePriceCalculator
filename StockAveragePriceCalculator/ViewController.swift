@@ -292,14 +292,15 @@ extension ViewController: UITextFieldDelegate {
 extension UITextField {
 
     func addButton() {
-        let toolbar = UIToolbar()
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
         toolbar.barStyle = .default
+        toolbar.sizeToFit()
 
         let up = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(goToPrevField))
         let down = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: #selector(goToNextField))
 
         toolbar.items = [up, down]
-        toolbar.sizeToFit()
+        
         self.inputAccessoryView = toolbar
     }
 
