@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var view1: UIView!
+    
     @IBOutlet weak var finalPriceField: UITextField!
     @IBOutlet weak var finalAmountField: UITextField!
     @IBOutlet weak var finalTotalPriceField: UITextField!
@@ -30,6 +32,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view1.layer.addBorder([.bottom], color: UIColor.lightGray, width: 1.5)
         
         setTextField()
         userDefaultsClear()
@@ -290,20 +294,19 @@ extension ViewController: UITextFieldDelegate {
 }
 
 extension UITextField {
-
+    
     func addButton() {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
         toolbar.barStyle = .default
         toolbar.sizeToFit()
-
+        
         let up = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(goToPrevField))
         let down = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: #selector(goToNextField))
-
-        toolbar.items = [up, down]
         
+        toolbar.items = [up, down]
         self.inputAccessoryView = toolbar
     }
-
+    
     @objc func goToPrevField() {
         let prevFieldTag = self.tag - 1
         if let prevField = self.superview?.superview?.viewWithTag(prevFieldTag)  {
@@ -312,13 +315,39 @@ extension UITextField {
             self.resignFirstResponder()
         }
     }
-
+    
     @objc func goToNextField() {
         let nextFieldTag = self.tag + 1
         if let nextField = self.superview?.superview?.viewWithTag(nextFieldTag) {
             nextField.becomeFirstResponder()
         } else {
             self.resignFirstResponder()
+        }
+    }
+}
+
+extension CALayer {
+    func addBorder(_ arr_edge: [UIRectEdge], color: UIColor, width: CGFloat) {
+        for edge in arr_edge {
+            let border = CALayer()
+            switch edge {
+            case UIRectEdge.top:
+                border.frame = CGRect.init(x: 0, y: 0, width: frame.width, height: width)
+                break
+            case UIRectEdge.bottom:
+                border.frame = CGRect.init(x: 0, y: frame.height - width, width: frame.width, height: width)
+                break
+            case UIRectEdge.left:
+                border.frame = CGRect.init(x: 0, y: 0, width: width, height: frame.height)
+                break
+            case UIRectEdge.right:
+                border.frame = CGRect.init(x: frame.width - width, y: 0, width: width, height: frame.height)
+                break
+            default:
+                break
+            }
+            border.backgroundColor = color.cgColor;
+            self.addSublayer(border)
         }
     }
 }

@@ -17,43 +17,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6lK-iN-i9Z" userLabel="View1">
-                                <rect key="frame" x="16" y="48" width="343" height="100"/>
+                                <rect key="frame" x="16" y="48" width="343" height="133.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최종 보유" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brB-Sr-x2g">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="최종 평균단가" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5cX-ha-aYM" userLabel="최종평균단가 필드">
-                                        <rect key="frame" x="0.0" y="18" width="188.5" height="40"/>
+                                        <rect key="frame" x="0.0" y="24" width="188.5" height="53.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KmI-hS-HSK">
-                                        <rect key="frame" x="330" y="29" width="13" height="18"/>
+                                        <rect key="frame" x="330" y="38.5" width="13" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="최종 수량" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D1h-iO-vti" userLabel="최종 수량 필드">
-                                        <rect key="frame" x="196.5" y="18" width="130.5" height="40"/>
+                                        <rect key="frame" x="196.5" y="24" width="130.5" height="53.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cpy-HZ-pnx">
-                                        <rect key="frame" x="328.5" y="69" width="14.5" height="18"/>
+                                        <rect key="frame" x="328.5" y="92" width="14.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="최종 금액" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QKN-ee-Zsn" userLabel="최종 금액 필드">
-                                        <rect key="frame" x="0.0" y="58" width="188.5" height="40"/>
+                                        <rect key="frame" x="0.0" y="77.5" width="188.5" height="53"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="최종 수익률" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hcv-GJ-KHi" userLabel="최종 수익률 필드">
-                                        <rect key="frame" x="196.5" y="58" width="130.5" height="40"/>
+                                        <rect key="frame" x="196.5" y="77.5" width="130.5" height="53"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -92,7 +92,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F8Y-mk-01b" userLabel="View2">
-                                <rect key="frame" x="16" y="152" width="343" height="100"/>
+                                <rect key="frame" x="16" y="185.5" width="343" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 보유" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPT-PG-Hwz">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="18"/>
@@ -166,7 +166,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vx1-0Y-EbH" userLabel="View3">
-                                <rect key="frame" x="16" y="256" width="343" height="100"/>
+                                <rect key="frame" x="16" y="289.5" width="343" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="추가 매수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDN-h8-t8P">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="18"/>
@@ -233,10 +233,10 @@
                             <constraint firstItem="6lK-iN-i9Z" firstAttribute="top" secondItem="xNl-mD-CCP" secondAttribute="top" constant="4" id="Ya4-vL-z2Y"/>
                             <constraint firstItem="F8Y-mk-01b" firstAttribute="leading" secondItem="6lK-iN-i9Z" secondAttribute="leading" id="az9-Jn-lkg"/>
                             <constraint firstItem="Vx1-0Y-EbH" firstAttribute="top" secondItem="F8Y-mk-01b" secondAttribute="bottom" constant="4" id="dtp-lm-BHX"/>
-                            <constraint firstItem="F8Y-mk-01b" firstAttribute="height" secondItem="6lK-iN-i9Z" secondAttribute="height" id="gyy-eN-gcQ"/>
+                            <constraint firstItem="F8Y-mk-01b" firstAttribute="height" secondItem="4rt-ou-lBf" secondAttribute="height" multiplier="0.15" id="gyy-eN-gcQ"/>
                             <constraint firstItem="Vx1-0Y-EbH" firstAttribute="leading" secondItem="F8Y-mk-01b" secondAttribute="leading" id="qho-nf-bsP"/>
-                            <constraint firstItem="6lK-iN-i9Z" firstAttribute="height" secondItem="4rt-ou-lBf" secondAttribute="height" multiplier="0.15" id="sCs-X3-lPp"/>
-                            <constraint firstItem="Vx1-0Y-EbH" firstAttribute="height" secondItem="6lK-iN-i9Z" secondAttribute="height" id="wQl-3K-cSl"/>
+                            <constraint firstItem="6lK-iN-i9Z" firstAttribute="height" secondItem="4rt-ou-lBf" secondAttribute="height" multiplier="0.2" id="sCs-X3-lPp"/>
+                            <constraint firstItem="Vx1-0Y-EbH" firstAttribute="height" secondItem="F8Y-mk-01b" secondAttribute="height" id="wQl-3K-cSl"/>
                             <constraint firstItem="F8Y-mk-01b" firstAttribute="trailing" secondItem="6lK-iN-i9Z" secondAttribute="trailing" id="zge-yz-xsZ"/>
                         </constraints>
                     </view>
@@ -259,6 +259,7 @@
                         <outlet property="finalPercentField" destination="hcv-GJ-KHi" id="MLX-Dw-eUl"/>
                         <outlet property="finalPriceField" destination="5cX-ha-aYM" id="A4j-6v-1a3"/>
                         <outlet property="finalTotalPriceField" destination="QKN-ee-Zsn" id="3dr-yN-jVP"/>
+                        <outlet property="view1" destination="6lK-iN-i9Z" id="heb-u5-3Db"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSE-sH-gGW" sceneMemberID="firstResponder"/>
