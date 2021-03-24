@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view1.layer.addBorder([.bottom], color: UIColor.lightGray, width: 1.5)
+        view1.layer.addBorder([.bottom], color: UIColor.systemIndigo, width: 0.8)
         
         setTextField()
         userDefaultsClear()
@@ -63,8 +63,13 @@ class ViewController: UIViewController {
             guard let placeholderText = textField.placeholder else {
                 return
             }
-            textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+            textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         }
+        
+        guard let finalPlaceholder = finalPriceField.placeholder else {
+            return
+        }
+        finalPriceField.attributedPlaceholder = NSAttributedString(string: finalPlaceholder, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 20, weight: .semibold), NSAttributedString.Key.foregroundColor : UIColor.systemIndigo])
         
         currentPriceField.tag = 2
         currentAmountField.tag = 3
