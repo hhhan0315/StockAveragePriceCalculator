@@ -8,9 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    @IBOutlet weak var view1: UIView!
-    
+        
     @IBOutlet weak var finalPriceField: UITextField!
     @IBOutlet weak var finalAmountField: UITextField!
     @IBOutlet weak var finalTotalPriceField: UITextField!
@@ -29,12 +27,11 @@ class ViewController: UIViewController {
     private var allTextFields = [UITextField]()
     
     private let userDefaults = UserDefaults.standard
+    private let maxFractionDigits = 8
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view1.layer.addBorder([.bottom], color: UIColor.systemIndigo, width: 0.8)
-        
+                
         setTextField()
         userDefaultsClear()
         
@@ -54,8 +51,8 @@ class ViewController: UIViewController {
         
         for textField in inputTextFields { // textField 테두리가 너무 옅어서 살짝 진하게 만들었다.
             textField.delegate = self
-            textField.layer.borderWidth = 1
-            textField.layer.borderColor = UIColor.lightGray.cgColor
+            textField.layer.borderWidth = 0.7
+            textField.layer.borderColor = UIColor.darkGray.cgColor
             textField.layer.cornerRadius = 5
         }
         
@@ -69,7 +66,7 @@ class ViewController: UIViewController {
         guard let finalPlaceholder = finalPriceField.placeholder else {
             return
         }
-        finalPriceField.attributedPlaceholder = NSAttributedString(string: finalPlaceholder, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 20, weight: .semibold), NSAttributedString.Key.foregroundColor : UIColor.systemIndigo])
+        finalPriceField.attributedPlaceholder = NSAttributedString(string: finalPlaceholder, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 25, weight: .semibold), NSAttributedString.Key.foregroundColor : UIColor.systemIndigo])
         
         currentPriceField.tag = 2
         currentAmountField.tag = 3
@@ -94,7 +91,7 @@ class ViewController: UIViewController {
     func makeCommaString(num: Double) -> String? {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.maximumFractionDigits = maxFractionDigits
         let formatString = numberFormatter.string(from: NSNumber(value: num))
         return formatString
     }
@@ -251,31 +248,43 @@ extension ViewController: UITextFieldDelegate {
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 6
+        numberFormatter.maximumFractionDigits = maxFractionDigits
         
         guard let commaRemovedText = textField.text?.replacingOccurrences(of: ",", with: "") else {
             return false
         }
         
-        var combinedText = commaRemovedText + string
         var commaAfterCount = 0
+        var commaSplitArray = [String]()
+        var combinedText = commaRemovedText + string
         
         if combinedText.contains(".") {
-            let arr = combinedText.components(separatedBy: ".")
-            commaAfterCount = arr[1].count
+            commaSplitArray = combinedText.components(separatedBy: ".")
+            combinedText = commaSplitArray[0]
+            commaAfterCount = commaSplitArray[1].count
         }
         
-        // backspace 입력받았을 때, 전체 길이 9, 콤마 이후에 3개 -> 더 입력되지 않도록 자른다.
-        if string.isEmpty || combinedText.count > (10 + commaAfterCount) || commaAfterCount > 6 {
-            // 마지막 하나만 남았을 경우
-            if combinedText.count == 1 {
-                textField.text = .none
-                textField.sendActions(for: .editingChanged)
-                return false
+        // backspace 입력
+        if string.isEmpty || combinedText.count > (10 + commaAfterCount) || commaAfterCount > maxFractionDigits {
+            // 소수점 이후에 숫자가 있을 경우
+            if commaAfterCount > 0 {
+                commaSplitArray[1].removeLast()
+            } else {
+                if combinedText.count == 1 {
+                    textField.text = .none
+                    textField.sendActions(for: .editingChanged)
+                    return false
+                }
+                
+                // 소수점 이후에는 숫자가 없지만 . 만 있을 경우
+                if commaSplitArray.count == 2 {
+                    combinedText += "."
+                    commaSplitArray.removeLast()
+                }
+                
+                let lastIndex = combinedText.index(combinedText.endIndex, offsetBy: -1)
+                combinedText = String(combinedText[..<lastIndex])
             }
-            
-            let lastIndex = combinedText.index(combinedText.endIndex, offsetBy: -1)
-            combinedText = String(combinedText[..<lastIndex])
         }
         
         guard let formatNumber = numberFormatter.number(from: combinedText) else {
@@ -286,12 +295,10 @@ extension ViewController: UITextFieldDelegate {
             return false
         }
         
-        // 소수점 입력
-        if string == "." {
-            if !(formatString.contains(".")) {
-                formatString.append(".")
-            }
+        if commaSplitArray.count == 2 {
+            formatString += ".\(commaSplitArray[1])"
         }
+
         textField.text = formatString
         textField.sendActions(for: .editingChanged)
         return false
@@ -327,32 +334,6 @@ extension UITextField {
             nextField.becomeFirstResponder()
         } else {
             self.resignFirstResponder()
-        }
-    }
-}
-
-extension CALayer {
-    func addBorder(_ arr_edge: [UIRectEdge], color: UIColor, width: CGFloat) {
-        for edge in arr_edge {
-            let border = CALayer()
-            switch edge {
-            case UIRectEdge.top:
-                border.frame = CGRect.init(x: 0, y: 0, width: frame.width, height: width)
-                break
-            case UIRectEdge.bottom:
-                border.frame = CGRect.init(x: 0, y: frame.height - width, width: frame.width, height: width)
-                break
-            case UIRectEdge.left:
-                border.frame = CGRect.init(x: 0, y: 0, width: width, height: frame.height)
-                break
-            case UIRectEdge.right:
-                border.frame = CGRect.init(x: frame.width - width, y: 0, width: width, height: frame.height)
-                break
-            default:
-                break
-            }
-            border.backgroundColor = color.cgColor;
-            self.addSublayer(border)
         }
     }
 }
